@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Elasticsearch</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/elasticsearch/12.1.3/elasticsearch.jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.js"></script>
+
+    <script type="text/javascript" src="../js/es/connection.js"></script>
+
+
+
+</head>
+<body>
+
+
+<form>
+    Show
+    <input value="cluster state" id="state" type="button">,
+    <input value="cluster health" id="health" type="button">,
+    <input value="cluster nodes info" id="nodes_info" type="button">
+</form>
+
+<div id="output" style="white-space: pre; font-family: monospace;"></div>
+
+<script type="text/javascript">
+
+    client.get({
+        index: 'chapter4',
+        type: 'person',
+        id: 2
+    }, function (error, response) {
+        $("#output").append("hey");
+        $("#output").append(JSON.stringify(response));
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Products</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/elasticsearch/12.1.3/elasticsearch.jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/es/connection.js"></script>
+
+    <style>
+        .bd-example {
+            padding: 30px;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-left: 30px;
+            margin-top: 50px;
+            border-width: .2rem;
+            position: relative;
+            border: solid #f7f7f9;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ABC Corp</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="products.html">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Admin <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Admin</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Product</li>
+                            <li><a href="add-products.html">Add Product</a></li>
+                            <li><a href="#">View Product By Id</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="col-12 col-md-9 pull-md-3 bd-content">
+        <div class="bd-example">
+            <div class="alert alert-success alert-dismissible" role="alert" style="display: none">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Product with id <strong id="pid"></strong> successfully added.
+            </div>
+
+            <div class="alert alert-danger alert-dismissible" role="alert" style="display: none">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Exception while adding the product
+            </div>
+
+            <form id="myForm" action="#" method="post">
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Unique Product Id</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" id="productId">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-email-input" class="col-2 col-form-label">Title</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" id="title">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-url-input" class="col-2 col-form-label">Description</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" id="description">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-tel-input" class="col-2 col-form-label">Image url</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" id="image-url">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-password-input" class="col-2 col-form-label">Unit Price</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" id="unitPrice">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-number-input" class="col-2 col-form-label">Category 1</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" id="category1">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-datetime-local-input" class="col-2 col-form-label">Category 2</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" id="category2">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-2 col-form-label">Category 3</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="" id="category3">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+    </div>
+</footer>
+<script>
+
+    $(document).ready(function () {
+        $("#btnSubmit").click(function (event) {
+            event.preventDefault();
+            var form = $('#myForm');
+
+            var jsonData = {};
+            jsonData["productId"] = $("#productId").val();
+            jsonData["variationId"] = $("#variationId").val();
+            jsonData["title"] = $("#title").val();
+            jsonData["description"] = $("#description").val();
+            jsonData["image-url"] = $("#image-url").val();
+            jsonData["unitPrice"] = $("#unitPrice").val();
+            jsonData["category1"] = $("#category1").val();
+            jsonData["category2"] = $("#category2").val();
+            jsonData["category3"] = $("#category3").val();
+
+            var data = JSON.stringify(jsonData);
+
+            client.index({
+                index: 'abccorp',
+                type: 'product',
+                id: jsonData["productId"],
+                body: data
+            }, function (err, response) {
+                if (err != null) {
+                    $(".alert-danger").css("display", "block");
+                } else {
+                    $("#pid").append(response._id);
+                    $(".alert-success").css("display", "block");
+                }
+            });
+        });
+    });
+
+</script>
+</body>
+</html>
