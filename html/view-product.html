@@ -115,7 +115,7 @@
             id:  productId
         }, function(err, response){
             if(err != null) {
-
+                $(".alert-danger").css("display", "block");
             } else {
                 // Pass our data to the template
                 var theCompiledHtml = theTemplate(response._source);
